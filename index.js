@@ -1,6 +1,6 @@
 const element = (
   <h1>
-    Hello, {formatName(user)}!
+    Hello, React!!!
   </h1>
 );
 
