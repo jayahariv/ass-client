@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>1</title>
-  </head>
-  <body>
-    <h1>Random Text 2.. Jason is here!</h1>
-    <div id="test"></div>
-	<script src="https://fb.me/react-15.2.0.js"></script>
+    <head>
+        <script src="https://fb.me/react-15.2.0.js"></script>
         <script src="https://fb.me/react-dom-15.2.0.js"></script>
+    </head>
+<body>
+    <div id="app"></div>
+    <script>
         var HelloMessage = React.createClass({
             displayName: 'HelloMessage',
             render: function render() {
@@ -17,5 +15,5 @@
         });
         ReactDOM.render(React.createElement(HelloMessage,{ name: 'John' }), document.getElementById('app'));
     </script>
-  </body>
+</body>
 </html>
