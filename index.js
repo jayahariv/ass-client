@@ -6,5 +6,5 @@ const element = (
 
 ReactDOM.render(
   element,
-  document.getElementById('test')
+  document.getElementById('app')
 );
