@@ -1,2 +1,0 @@
-# ass-client
-ass client
