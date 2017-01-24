@@ -9,13 +9,13 @@ class AssemblaAPI {
     this._baseUrl = 'https://api.assembla.com';
   }
 
-  getActivity(callback: Function): string {
+  getActivity(key: string, secret: string, callback: Function): string {
     request(
       this._baseUrl + '/v1/activity/',
       {
         headers: {
-          'X-Api-Key': 'xxx',
-          'X-Api-Secret': 'xxx',
+          'X-Api-Key': key,
+          'X-Api-Secret': secret,
         },
       },
       callback,
