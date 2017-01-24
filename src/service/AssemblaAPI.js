@@ -1,7 +1,4 @@
-import React from 'react';
-
 const request = require('xhr-request');
-
 
 class AssemblaAPI {
   _baseUrl: string;
