@@ -42,6 +42,12 @@ class App extends Component {
   }
 
   render() {
+    AssemblaAPI.getActivity(
+      function (err, data) {
+        if (err) {throw err}
+        console.log('result: ', data);
+      },
+    );
     return (
       <div className="App">
         <div className="App-header">
