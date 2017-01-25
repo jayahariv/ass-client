@@ -1,5 +1,6 @@
 import AssemblaAPI from '.././service/AssemblaAPI.js';
 import React from 'react';
+import './LoginContainer.css';
 
 class LoginContainer extends React.Component {
 
@@ -41,7 +42,7 @@ class LoginContainer extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="LoginContainer">
         <label> Key : </label>
         <input
           type="text"

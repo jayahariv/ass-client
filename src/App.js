@@ -2,6 +2,7 @@ import DocumentTitle from 'react-document-title'
 import React, { Component } from 'react';
 import './App.css';
 import Login from './ui/LoginContainer.js';
+import SideMenuContainer from './ui/SideMenuContainer.js';
 
 class App extends Component {
 
@@ -10,10 +11,14 @@ class App extends Component {
       <DocumentTitle title="Ass-Client">
         <div className="App" title="Home">
           <div className="App-header">
-            <h2>Ass-Client</h2>
+            <div className="App-title">
+              Ass-Client
+            </div>
           </div>
-          <p></p>
-          <Login />
+          <div className="App-content">
+            <SideMenuContainer />
+            <Login />
+          </div>
         </div>
       </DocumentTitle>
     );
