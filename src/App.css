@@ -21,3 +21,8 @@
 .App-content {
   width: 100%;
 }
+
+.App-middle {
+  display: inline-block;
+  width: 66%;
+}
