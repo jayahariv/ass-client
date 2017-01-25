@@ -17,6 +17,7 @@ class App extends Component {
           </div>
           <div className="App-content">
             <SideMenuContainer />
+            <div className='App-middle' />
             <Login />
           </div>
         </div>
