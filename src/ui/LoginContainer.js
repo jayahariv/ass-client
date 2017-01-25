@@ -42,19 +42,34 @@ class LoginContainer extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="LoginContainer">
-        <label> Key : </label>
-        <input
-          type="text"
-          value={this.state.key}
-          onChange={this.onChangeKey} />
-        <label> Secret: </label>
-        <input
-          type="text"
-          value={this.state.secret}
-          onChange={this.onChangeSecret} />
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="LoginContainer">
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <input
+              className='InputStyle'
+              type='text'
+              placeholder='key'
+              value={this.state.key}
+              onChange={this.onChangeKey}
+            />
+          </div>
+          <div>
+            <input
+              className='InputStyle'
+              type='text'
+              placeholder='secret'
+              value={this.state.secret}
+              onChange={this.onChangeSecret}
+            />
+          </div>
+          <div>
+            <input
+              type="submit"
+              value="Submit"
+            />
+          </div>
+        </form>
+      </div>
     );
   }
 }
