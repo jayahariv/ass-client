@@ -5,6 +5,7 @@ import Login from './ui/LoginContainer.js';
 import SideMenuContainer from './ui/SideMenuContainer.js';
 
 class App extends Component {
+
   render() {
     return (
       <DocumentTitle title="Ass-Client">
