@@ -2,10 +2,11 @@
   border-width: thin;;
   border-color: black;
   border-style: solid;
+  margin-left: 1px;
   margin-top: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 18%;
+  width: 100%;
 }
 
 .InputStyle {
