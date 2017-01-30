@@ -16,8 +16,8 @@ class SideMenuContainer extends React.Component {
 
   render() {
     var navi = [
-      { id: 'item1', text: 'Option 1'},
-      { id: 'item2', text: 'Option 2'}
+      { id: 'mentions', text: '@Mentions'},
+      { id: 'item2', text: 'Comments'}
     ];
 
     return (
