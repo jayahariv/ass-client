@@ -39,7 +39,6 @@ class LoginContainer extends React.Component<void, Props, void> {
   }
 
   handleSubmit(event) {
-    alert('Key: ' + this.state.key + ' Secret: ' + this.state.secret);
     AssemblaAPI.getActivity(
       this.state.key,
       this.state.secret,

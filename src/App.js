@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './ui/LoginContainer.js';
 import SideMenuContainer from './ui/SideMenuContainer.js';
+const ListView = require('react-list-view');
 
 class App extends Component {
 
@@ -16,11 +17,25 @@ class App extends Component {
   }
 
   _showActivity(): void {
-    console.log(this.state.activity);
+    if (this.state.activity) {
+      var myObject = JSON.parse(this.state.activity);
+      console.log(myObject.length);
+      return (
+        <ListView
+          rowCount={this.state.activity.length}
+          rowHeight={20}
+          renderItem={(x, y, style) =>
+            <div style={style}>
+              Item #{x} #{y}
+            </div>
+          }
+        />
+      );
+    }
   }
 
   render() {
-    this._showActivity();
+    const mentions = this._showActivity();
     return (
       <DocumentTitle title="Ass-Client">
         <div className="App" title="Home">
@@ -30,10 +45,6 @@ class App extends Component {
             </div>
           </div>
           <div className="App-content">
-            <SideMenuContainer />
-            <div className='App-middle'>
-              {this.state.activity}
-            </div>
             <Login
               callback={($error, $resp) => {
                 this.setState({
@@ -41,6 +52,9 @@ class App extends Component {
                 });
               }}
             />
+            <div className='App-middle'>
+              {mentions}
+            </div>
           </div>
         </div>
       </DocumentTitle>
