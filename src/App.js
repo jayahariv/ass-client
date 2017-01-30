@@ -20,7 +20,7 @@ class App extends Component {
             <div className='App-middle' />
             <Login
               callback={($error, $resp) => {
-                
+
               }}
             />
           </div>
