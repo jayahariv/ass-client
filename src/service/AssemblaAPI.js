@@ -20,6 +20,19 @@ class AssemblaAPI {
       callback,
     );
   }
+
+  getMentions(key: string, secret: string, callback: Function): string {
+    request(
+      this._corsProxy + this._baseUrl + '/v1/user/mentions.json',
+      {
+        headers: {
+          'X-Api-Key': key,
+          'X-Api-Secret': secret,
+        },
+      },
+      callback,
+    );
+  }
 }
 
 module.exports = new AssemblaAPI();

@@ -24,8 +24,20 @@
 }
 
 .App-middle {
+  border-width: thin;;
+  border-color: black;
+  border-style: solid;
+  margin-top: 10px;
   margin-left: 10px;
   padding-top: 10px;
   padding-left: 10px;
   width: 66%;
+}
+
+.App-left {
+  width: 18%;
+}
+
+.ListView {
+  height: 400px;
 }
