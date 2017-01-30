@@ -19,10 +19,13 @@
   text-align:left;
 }
 .App-content {
+  display: flex;
   width: 100%;
 }
 
 .App-middle {
-  display: inline-block;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
   width: 66%;
 }
