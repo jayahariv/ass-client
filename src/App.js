@@ -52,6 +52,14 @@ class App extends Component {
           </div>
           <div className="App-content">
             <div className='App-left'>
+              <SideMenuContainer />
+            </div>
+            <div className="App-gap" />
+            <div className='App-middle'>
+              {mentions}
+            </div>
+            <div className="App-gap" />
+            <div className='App-right'>
               <Login
                 callback={($error, $resp) => {
                   this.setState({
@@ -59,9 +67,6 @@ class App extends Component {
                   });
                 }}
               />
-            </div>
-            <div className='App-middle'>
-              {mentions}
             </div>
           </div>
         </div>

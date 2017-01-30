@@ -28,14 +28,20 @@
   border-color: black;
   border-style: solid;
   margin-top: 10px;
-  margin-left: 10px;
-  padding-top: 10px;
-  padding-left: 10px;
-  width: 66%;
+  padding: 10px;
+  width: 68%;
+}
+
+.App-right {
+  width: 16%;
 }
 
 .App-left {
-  width: 18%;
+  width: 11%;
+}
+
+.App-gap {
+  width: 1%;
 }
 
 .ListView {
