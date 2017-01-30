@@ -16,19 +16,25 @@ class App extends Component {
     this._showActivity = this._showActivity.bind(this);
   }
 
-  _showActivity(): void {
+  _showActivity(): ListView {
     if (this.state.activity) {
-      var myObject = JSON.parse(this.state.activity);
-      console.log(myObject.length);
+      var mentions = JSON.parse(this.state.activity);
+      console.log(mentions);
       return (
         <ListView
-          rowCount={this.state.activity.length}
+          className="ListView"
+          rowCount={mentions.length}
           rowHeight={20}
-          renderItem={(x, y, style) =>
-            <div style={style}>
-              Item #{x} #{y}
-            </div>
-          }
+          renderItem={function(x, y, style) {
+            const mes = mentions[y].message;
+            const trimMes = mentions[y].message.substring(10, 100);
+            return (
+              <div style={style}>
+                <a href={mentions[y].link} > #{mentions[y].id} </a> -
+                {mes.length > 100 ? trimMes + '...' : trimMes}
+              </div>
+            );
+          }}
         />
       );
     }
@@ -45,13 +51,15 @@ class App extends Component {
             </div>
           </div>
           <div className="App-content">
-            <Login
-              callback={($error, $resp) => {
-                this.setState({
-                  activity: $resp,
-                });
-              }}
-            />
+            <div className='App-left'>
+              <Login
+                callback={($error, $resp) => {
+                  this.setState({
+                    activity: $resp,
+                  });
+                }}
+              />
+            </div>
             <div className='App-middle'>
               {mentions}
             </div>
