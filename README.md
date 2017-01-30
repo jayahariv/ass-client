@@ -12,5 +12,4 @@ This one is an assemble client project, which you can easily view the mentions.
 - Go to 'http://localhost:3000/'.
 - Enter your Assembla key & secret, hit 'submit'.
 
-
 This repo is only on development phase.
