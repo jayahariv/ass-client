@@ -1,14 +1,24 @@
 import AssemblaAPI from '.././service/AssemblaAPI.js';
 import React from 'react';
 import './LoginContainer.css';
+const {PropTypes} = React;
 
-class LoginContainer extends React.Component {
+type Props = {
+  callback: Function,
+}
+
+class LoginContainer extends React.Component<void, Props, void> {
+  props: Props;
+
+  static PropTypes = {
+    callback: PropTypes.func.isRequired,
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      key: '',
-      secret: '',
+      key: '88838d12fc2c1f3d2108',
+      secret: '1be1154f350b95af1a0c2d4f80b659b0696a7ccb',
     };
 
     this.onChangeKey = this.onChangeKey.bind(this);
@@ -33,9 +43,7 @@ class LoginContainer extends React.Component {
     AssemblaAPI.getActivity(
       this.state.key,
       this.state.secret,
-      function(err, resp) {
-        console.log(resp);
-      },
+      this.props.callback,
     );
     event.preventDefault();
   }
