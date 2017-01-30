@@ -18,7 +18,11 @@ class App extends Component {
           <div className="App-content">
             <SideMenuContainer />
             <div className='App-middle' />
-            <Login />
+            <Login
+              callback={($error, $resp) => {
+
+              }}
+            />
           </div>
         </div>
       </DocumentTitle>
