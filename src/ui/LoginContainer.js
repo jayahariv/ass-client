@@ -1,6 +1,8 @@
 import AssemblaAPI from '.././service/AssemblaAPI.js';
 import React from 'react';
 import './LoginContainer.css';
+import AssStore from '.././store/AssStore.js';
+
 const {PropTypes} = React;
 
 type Props = {
@@ -24,6 +26,7 @@ class LoginContainer extends React.Component<void, Props, void> {
     this.onChangeKey = this.onChangeKey.bind(this);
     this.onChangeSecret = this.onChangeSecret.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this._responseFromUsers = this._responseFromUsers.bind(this);
   }
 
   onChangeKey(event) {
@@ -39,17 +42,26 @@ class LoginContainer extends React.Component<void, Props, void> {
   }
 
   handleSubmit(event) {
+    AssemblaAPI.getUsers(
+      this.state.key,
+      this.state.secret,
+      this._responseFromUsers,
+    );
+    event.preventDefault();
+  }
+
+  _responseFromUsers($e, $r) {
+    var users = JSON.parse($r);
+    let user_list = new Map();
+    for (var user of users) {
+      user_list.set(user.id, user);
+    }
+    AssStore.getInstance().users = user_list;
     AssemblaAPI.getMentions(
       this.state.key,
       this.state.secret,
       this.props.callback,
     );
-    // AssemblaAPI.getActivity(
-    //   this.state.key,
-    //   this.state.secret,
-    //   this.props.callback,
-    // );
-    event.preventDefault();
   }
 
   render() {
