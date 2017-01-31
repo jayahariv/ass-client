@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './ui/LoginContainer.js';
 import SideMenuContainer from './ui/SideMenuContainer.js';
+import AssStore from './store/AssStore.js';
+
 const ListView = require('react-list-view');
 
 class App extends Component {
@@ -19,19 +21,22 @@ class App extends Component {
   _showActivity(): ListView {
     if (this.state.activity) {
       var mentions = JSON.parse(this.state.activity);
-      console.log(mentions);
       return (
         <ListView
           className="ListView"
           rowCount={mentions.length}
           rowHeight={20}
           renderItem={function(x, y, style) {
+            const ins = AssStore.getInstance();
+            const users = ins.getUsers();
+            const user = users.get(mentions[y].author_id);
             const mes = mentions[y].message;
             const trimMes = mentions[y].message.substring(10, 100);
             return (
               <div style={style}>
                 <a href={mentions[y].link} > #{mentions[y].id} </a> -
-                {mes.length > 100 ? trimMes + '...' : trimMes}
+                {user.name}&emsp;
+                {mes.length > 100 ? trimMes + '...' : trimMes}>
               </div>
             );
           }}
