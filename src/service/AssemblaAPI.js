@@ -36,7 +36,7 @@ class AssemblaAPI {
 
   getUsers(key: string, secret: string, callback: Function): string {
     request(
-      this._corsProxy + this._baseUrl + '/v1/spaces/cOQE8-BAWr5QX8acwqjQYw/users.json',
+      this._corsProxy + this._baseUrl + '/v1/spaces/xxx/users.json',
       {
         headers: {
           'X-Api-Key': key,
