@@ -13,35 +13,57 @@ class App extends Component {
     super(props);
     this.state = {
       activity: '',
+      mentions: [],
     };
 
     this._showActivity = this._showActivity.bind(this);
+    this._renderListView = this._renderListView.bind(this);
+    this._trim = this._trim.bind(this);
   }
 
   _showActivity(): ListView {
-    if (this.state.activity) {
-      var mentions = JSON.parse(this.state.activity);
+    if (this.state.mentions) {
       return (
         <ListView
           className="ListView"
-          rowCount={mentions.length}
-          rowHeight={20}
-          renderItem={function(x, y, style) {
-            const ins = AssStore.getInstance();
-            const users = ins.getUsers();
-            const user = users.get(mentions[y].author_id);
-            const mes = mentions[y].message;
-            const trimMes = mentions[y].message.substring(10, 100);
-            return (
-              <div style={style}>
-                <a href={mentions[y].link} > #{mentions[y].id} </a> -
-                {user.name}&emsp;
-                {mes.length > 100 ? trimMes + '...' : trimMes}>
-              </div>
-            );
-          }}
+          rowCount={this.state.mentions.length}
+          columnCount={2}
+          rowHeight={30}
+          columnWidth={180}
+          renderItem={this._renderListView}
         />
       );
+    }
+  }
+
+  _trim(s, l, padding) {
+    return s.length > l ? s.substring(padding, l - padding) + '...' : s;
+  };
+
+  _renderListView(x, y, style) {
+    const ins = AssStore.getInstance();
+    const users = ins.getUsers();
+    let user;
+    if (users) {
+      user = users.get(this.state.mentions[y].author_id);
+    }
+
+    if (x === 0) {
+      return (
+        <div style={style}>
+          <a href={this.state.mentions[y].link}>
+            #{this.state.mentions[y].id}
+          </a>
+          - @{this._trim(user.name, 5, 5)}&emsp;
+        </div>
+      );
+    } else {
+      return (
+        <div style={style}>
+          {this._trim(this.state.mentions[y].message, 120, 10)}
+        </div>
+      );
+
     }
   }
 
@@ -68,7 +90,7 @@ class App extends Component {
               <Login
                 callback={($error, $resp) => {
                   this.setState({
-                    activity: $resp,
+                    mentions: JSON.parse($resp),
                   });
                 }}
               />
