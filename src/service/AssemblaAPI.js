@@ -1,3 +1,5 @@
+import AssStore from '.././store/AssStore.js';
+
 const request = require('xhr-request');
 
 class AssemblaAPI {
@@ -6,21 +8,27 @@ class AssemblaAPI {
     this._baseUrl = 'http://localhost:22988';
   }
 
-  getActivity(key: string, secret: string, callback: Function): string {
+  getActivity(callback: Function): string {
+    const key = AssStore.getInstance().getKey();
+    const secret = AssStore.getInstance().getSecret();
     request(
       this._baseUrl + '/activity?key=' + key + '&secret=' + secret,
       callback,
     );
   }
 
-  getMentions(key: string, secret: string, callback: Function): string {
+  getMentions(callback: Function): string {
+    const key = AssStore.getInstance().getKey();
+    const secret = AssStore.getInstance().getSecret();
     request(
       this._baseUrl + '/mentions?key=' + key + '&secret=' + secret,
       callback,
     );
   }
 
-  getUsers(key: string, secret: string, callback: Function): string {
+  getUsers(callback: Function): string {
+    const key = AssStore.getInstance().getKey();
+    const secret = AssStore.getInstance().getSecret();
     request(
       this._baseUrl + '/spaces/xxx/users?key=' + key + '&secret=' + secret,
       callback,
