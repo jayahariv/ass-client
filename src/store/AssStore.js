@@ -1,8 +1,18 @@
 class AssStoreInstance {
   users: Map;
+  key: string;
+  secret: string;
 
   getUsers() {
     return this.users;
+  }
+
+  getKey(){
+    return this.key;
+  }
+
+  getSecret() {
+    return this.secret;
   }
 }
 
