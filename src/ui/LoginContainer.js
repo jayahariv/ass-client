@@ -19,8 +19,12 @@ class LoginContainer extends React.Component<void, Props, void> {
   constructor(props) {
     super(props);
     this.state = {
-      key: '',
-      secret: '',
+      key: AssStore.getInstance().getKey()
+        ? AssStore.getInstance().getKey()
+        : '',
+      secret: AssStore.getInstance().getSecret()
+        ? AssStore.getInstance().getSecret()
+        : '',
     };
 
     this.onChangeKey = this.onChangeKey.bind(this);
@@ -42,9 +46,9 @@ class LoginContainer extends React.Component<void, Props, void> {
   }
 
   handleSubmit(event) {
+    AssStore.getInstance().key = this.state.key;
+    AssStore.getInstance().secret = this.state.secret;
     AssemblaAPI.getUsers(
-      this.state.key,
-      this.state.secret,
       this._responseFromUsers,
     );
     event.preventDefault();
@@ -58,8 +62,6 @@ class LoginContainer extends React.Component<void, Props, void> {
     }
     AssStore.getInstance().users = user_list;
     AssemblaAPI.getMentions(
-      this.state.key,
-      this.state.secret,
       this.props.callback,
     );
   }
