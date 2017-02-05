@@ -2,47 +2,27 @@ const request = require('xhr-request');
 
 class AssemblaAPI {
   _baseUrl: string;
-  _corsProxy: string;
   constructor() {
-    this._corsProxy = 'http://localhost:1337';
-    this._baseUrl = '/api.assembla.com';
+    this._baseUrl = 'http://localhost:22988';
   }
 
   getActivity(key: string, secret: string, callback: Function): string {
     request(
-      this._corsProxy + this._baseUrl + '/v1/activity/',
-      {
-        headers: {
-          'X-Api-Key': key,
-          'X-Api-Secret': secret,
-        },
-      },
+      this._baseUrl + '/activity?key=' + key + '&secret=' + secret,
       callback,
     );
   }
 
   getMentions(key: string, secret: string, callback: Function): string {
     request(
-      this._corsProxy + this._baseUrl + '/v1/user/mentions.json',
-      {
-        headers: {
-          'X-Api-Key': key,
-          'X-Api-Secret': secret,
-        },
-      },
+      this._baseUrl + '/mentions?key=' + key + '&secret=' + secret,
       callback,
     );
   }
 
   getUsers(key: string, secret: string, callback: Function): string {
     request(
-      this._corsProxy + this._baseUrl + '/v1/spaces/xxx/users.json',
-      {
-        headers: {
-          'X-Api-Key': key,
-          'X-Api-Secret': secret,
-        },
-      },
+      this._baseUrl + '/spaces/xxx/users?key=' + key + '&secret=' + secret,
       callback,
     );
   }
