@@ -19,18 +19,12 @@ class LoginContainer extends React.Component<void, Props, void> {
   constructor(props) {
     super(props);
     this.state = {
-      key: AssStore.getInstance().getKey()
-        ? AssStore.getInstance().getKey()
-        : '',
-      secret: AssStore.getInstance().getSecret()
-        ? AssStore.getInstance().getSecret()
-        : '',
+      key: 'a',
+      secret: 's',
     };
-
     this.onChangeKey = this.onChangeKey.bind(this);
     this.onChangeSecret = this.onChangeSecret.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this._responseFromUsers = this._responseFromUsers.bind(this);
   }
 
   onChangeKey(event) {
@@ -48,22 +42,10 @@ class LoginContainer extends React.Component<void, Props, void> {
   handleSubmit(event) {
     AssStore.getInstance().key = this.state.key;
     AssStore.getInstance().secret = this.state.secret;
-    AssemblaAPI.getUsers(
-      this._responseFromUsers,
-    );
-    event.preventDefault();
-  }
-
-  _responseFromUsers($e, $r) {
-    var users = JSON.parse($r);
-    let user_list = new Map();
-    for (var user of users) {
-      user_list.set(user.id, user);
-    }
-    AssStore.getInstance().users = user_list;
-    AssemblaAPI.getMentions(
+    AssemblaAPI.getActivity(
       this.props.callback,
     );
+    event.preventDefault();
   }
 
   render() {
