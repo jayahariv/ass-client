@@ -6,6 +6,15 @@
 }
 
 .InputStyle {
-  height: 14px;
-  width: 150px;
+  height: 20px;
+  width: 200px;
+}
+
+.padding {
+  height: 10px;
+}
+
+.button {
+  height: 40px;
+  width: 200px;
 }
