@@ -61,6 +61,7 @@ class LoginContainer extends React.Component<void, Props, void> {
               onChange={this.onChangeKey}
             />
           </div>
+          <div className="padding" />
           <div>
             <input
               className='InputStyle'
@@ -70,8 +71,10 @@ class LoginContainer extends React.Component<void, Props, void> {
               onChange={this.onChangeSecret}
             />
           </div>
+          <div className="padding" />
           <div>
             <input
+              className="button"
               type="submit"
               value="Submit"
             />
