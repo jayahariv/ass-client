@@ -1,0 +1,14 @@
+.LoginContainer {
+  border-width: thin;;
+  border-color: black;
+  border-style: solid;
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 18%;
+}
+
+.InputStyle {
+  height: 14px;
+  width: 150px;
+}
