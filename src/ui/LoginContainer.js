@@ -19,8 +19,8 @@ class LoginContainer extends React.Component<void, Props, void> {
   constructor(props) {
     super(props);
     this.state = {
-      key: 'e68488890419de9a030d',
-      secret: '3875a0a5c1e73a97380c6dadbad884e9f0b1a3b4',
+      key: '',
+      secret: '',
     };
     this.onChangeKey = this.onChangeKey.bind(this);
     this.onChangeSecret = this.onChangeSecret.bind(this);
