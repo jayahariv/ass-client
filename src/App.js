@@ -1,7 +1,6 @@
 import DocumentTitle from 'react-document-title'
 import React, { Component } from 'react';
 import './App.css';
-import Login from './ui/LoginContainer.js';
 import AssStore from './store/AssStore.js';
 import AssemblaAPI from './service/AssemblaAPI.js';
 import Login from './ui/LoginContainer.js';
