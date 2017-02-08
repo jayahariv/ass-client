@@ -2,6 +2,7 @@
   background-color: #17202A;
   color: white;
   display: inline-block;
-  height: 94vh;
-  width: 15%;
+  margin-left: 5px;
+  margin-top: 10px;
+  width: 100%;
 }

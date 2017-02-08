@@ -16,13 +16,32 @@
   font-size: large;
   font-weight: bold;
   padding: 10px;
-  text-align:left;
+  text-align:center;
 }
+
+.line {
+  background-color: #B9B904;
+  height: 2px;
+}
+
+.menu-bar {
+  background-color: #B9B904;
+  display: flex;
+  height: 20px;
+}
+
+.menu-bar-item {
+  color: #0B5345;
+  font-weight: bold;
+  padding: 0px 10px;
+  text-align:center;
+}
+
 .App-content {
+  display: flex;
   width: 100%;
 }
 
-.App-middle {
-  display: inline-block;
-  width: 66%;
+.ListView {
+  height: 650px;
 }
