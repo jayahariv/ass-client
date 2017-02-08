@@ -1,22 +1,35 @@
+import AssStore from '.././store/AssStore.js';
 const request = require('xhr-request');
 
 class AssemblaAPI {
   _baseUrl: string;
-  _corsProxy: string;
   constructor() {
-    this._corsProxy = 'http://localhost:1337';
-    this._baseUrl = '/api.assembla.com';
+    this._baseUrl = 'http://localhost:22988';
   }
 
-  getActivity(key: string, secret: string, callback: Function): string {
+  getActivity(callback: Function): string {
+    const key = AssStore.getInstance().getKey();
+    const secret = AssStore.getInstance().getSecret();
     request(
-      this._corsProxy + this._baseUrl + '/v1/activity/',
-      {
-        headers: {
-          'X-Api-Key': key,
-          'X-Api-Secret': secret,
-        },
-      },
+      this._baseUrl + '/activity?key=' + key + '&secret=' + secret + '&page=1',
+      callback,
+    );
+  }
+
+  getMentions(callback: Function): string {
+    const key = AssStore.getInstance().getKey();
+    const secret = AssStore.getInstance().getSecret();
+    request(
+      this._baseUrl + '/mentions?key=' + key + '&secret=' + secret,
+      callback,
+    );
+  }
+
+  getUsers(callback: Function): string {
+    const key = AssStore.getInstance().getKey();
+    const secret = AssStore.getInstance().getSecret();
+    request(
+      this._baseUrl + '/spaces/xxx/users?key=' + key + '&secret=' + secret,
       callback,
     );
   }
