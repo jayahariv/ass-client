@@ -54,7 +54,7 @@ class Reviews extends React.Component<Props> {
       reviews: a.filter((obj) => {
         return (
           obj.operation === 'commented on' &&
-          obj.author_id === 'anAw7cx2Wr4jZneJe5cbLr'
+          obj.author_id === 'myself'
         );
       }),
     });
