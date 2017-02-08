@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   render() {
-    const mentions = this._showActivity();
     const content = this._appContent();
     const menuBar = this._menuBar();
 
@@ -99,13 +98,7 @@ class App extends Component {
       return (
         <div className="menu-bar">
           <div className="menu-bar-item">
-            reviews
-          </div>
-          <div className="menu-bar-item">
-            commits
-          </div>
-          <div className="menu-bar-item">
-            mentions
+            Reviews
           </div>
         </div>
       );
