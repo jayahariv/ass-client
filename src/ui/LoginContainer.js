@@ -19,8 +19,8 @@ class LoginContainer extends React.Component<void, Props, void> {
   constructor(props) {
     super(props);
     this.state = {
-      key: 'a',
-      secret: 's',
+      key: '',
+      secret: '',
     };
     this.onChangeKey = this.onChangeKey.bind(this);
     this.onChangeSecret = this.onChangeSecret.bind(this);
@@ -71,7 +71,12 @@ class LoginContainer extends React.Component<void, Props, void> {
           />
         </div>
         <div className="padding" />
-        <button type="button" className="button">Login</button>
+        <button
+          type="button"
+          className="button"
+          onClick={this.handleSubmit}>
+          Login
+        </button>
       </div>
     );
   }
