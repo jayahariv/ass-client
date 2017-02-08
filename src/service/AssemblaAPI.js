@@ -1,5 +1,4 @@
 import AssStore from '.././store/AssStore.js';
-
 const request = require('xhr-request');
 
 class AssemblaAPI {
