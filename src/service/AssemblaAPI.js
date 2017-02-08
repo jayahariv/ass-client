@@ -30,7 +30,7 @@ class AssemblaAPI {
     const key = AssStore.getInstance().getKey();
     const secret = AssStore.getInstance().getSecret();
     request(
-      this._baseUrl + '/spaces/cOQE8-BAWr5QX8acwqjQYw/users?key=' + key + '&secret=' + secret,
+      this._baseUrl + '/spaces/xxx/users?key=' + key + '&secret=' + secret,
       callback,
     );
   }
