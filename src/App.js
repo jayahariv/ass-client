@@ -1,8 +1,10 @@
 import DocumentTitle from 'react-document-title'
 import React, { Component } from 'react';
 import './App.css';
-import Login from './ui/LoginContainer.js';
 import AssStore from './store/AssStore.js';
+import AssemblaAPI from './service/AssemblaAPI.js';
+import Login from './ui/LoginContainer.js';
+import Reviews from './ui/Reviews.js';
 
 const ListView = require('react-list-view');
 const Enum = require('enum');
@@ -58,11 +60,17 @@ class App extends Component {
     if (this.state.mode === ASSMode.LogOut) {
       return (
         <Login
-          callback={($e, $r) => {
-            const $o = JSON.parse($r);
-            if ($o && !$o.code) {
-              this.setState({
-                mode: ASSMode.Reviews,
+          callback={(e, r) => {
+            const o = JSON.parse(r);
+            if (o && !o.code) {
+              AssemblaAPI.getUsers((e, r) => {
+                const rsp = JSON.parse(r);
+                const users = new Map();
+                rsp.forEach((u) => users.set(u.id, u));
+                AssStore.getInstance().users = users;
+                this.setState({
+                  mode: ASSMode.Reviews,
+                });
               });
             } else {
               alert('Authentication Failed!!');
@@ -72,7 +80,7 @@ class App extends Component {
       );
     } else if (this.state.mode === ASSMode.Reviews) {
       return (
-        <div> reviews </div>
+        <Reviews />
       );
     } else if (this.state.mode === ASSMode.Mentions) {
       return (
