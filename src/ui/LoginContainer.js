@@ -2,6 +2,7 @@ import AssemblaAPI from '.././service/AssemblaAPI.js';
 import React from 'react';
 import './LoginContainer.css';
 import AssStore from '.././store/AssStore.js';
+import Constant from '.././Constants.js';
 
 const {PropTypes} = React;
 
@@ -18,6 +19,7 @@ class LoginContainer extends React.Component<void, Props, void> {
 
   constructor(props) {
     super(props);
+
     this.state = {
       key: '',
       secret: '',
@@ -25,6 +27,24 @@ class LoginContainer extends React.Component<void, Props, void> {
     this.onChangeKey = this.onChangeKey.bind(this);
     this.onChangeSecret = this.onChangeSecret.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    AssemblaAPI.getFile(
+      Constant.PASSWORD_PATH,
+      (e, r) => {
+        const ps = r.split(" ");
+        AssStore.getInstance().key = ps[0];
+        AssStore.getInstance().secret = ps[1];
+        AssStore.getInstance().space_id = ps[2];
+        AssStore.getInstance().author_id = ps[3];
+
+        this.setState({
+          key: AssStore.getInstance().key,
+          secret: AssStore.getInstance().secret,
+        });
+      },
+    );
   }
 
   onChangeKey(event) {
@@ -40,8 +60,6 @@ class LoginContainer extends React.Component<void, Props, void> {
   }
 
   handleSubmit(event) {
-    AssStore.getInstance().key = this.state.key;
-    AssStore.getInstance().secret = this.state.secret;
     AssemblaAPI.getActivity(
       this.props.callback,
     );

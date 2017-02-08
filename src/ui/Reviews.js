@@ -1,4 +1,5 @@
 import AssemblaAPI from '.././service/AssemblaAPI.js';
+import AssStore from '.././store/AssStore.js';
 import React from 'react'
 
 const {PropTypes} = React;
@@ -54,7 +55,7 @@ class Reviews extends React.Component<Props> {
       reviews: a.filter((obj) => {
         return (
           obj.operation === 'commented on' &&
-          obj.author_id === 'myself'
+          obj.author_id === AssStore.getInstance().getAuthorID()
         );
       }),
     });

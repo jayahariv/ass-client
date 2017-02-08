@@ -28,8 +28,17 @@ class AssemblaAPI {
   getUsers(callback: Function): string {
     const key = AssStore.getInstance().getKey();
     const secret = AssStore.getInstance().getSecret();
+    const spaceId = AssStore.getInstance().getSpaceID();
     request(
-      this._baseUrl + '/spaces/xxx/users?key=' + key + '&secret=' + secret,
+      this._baseUrl + '/spaces/' + spaceId +
+        '/users?key=' + key + '&secret=' + secret,
+      callback,
+    );
+  }
+
+  getFile(path: string, callback: Function): string {
+    request(
+      this._baseUrl + '/file?path=' + path,
       callback,
     );
   }

@@ -2,6 +2,8 @@ class AssStoreInstance {
   users: Map;
   key: string;
   secret: string;
+  author_id: string;
+  space_id: string;
 
   getUsers() {
     return this.users;
@@ -13,6 +15,14 @@ class AssStoreInstance {
 
   getSecret() {
     return this.secret;
+  }
+
+  getSpaceID() {
+    return this.space_id;
+  }
+
+  getAuthorID() {
+    return this.author_id;
   }
 }
 
