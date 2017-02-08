@@ -2,10 +2,6 @@ import AssemblaAPI from '.././service/AssemblaAPI.js';
 import AssStore from '.././store/AssStore.js';
 import React from 'react'
 
-const {PropTypes} = React;
-
-type Props = {}
-
 const style = {
   table: {
     'display': 'block',
@@ -28,10 +24,7 @@ const style = {
   }
 }
 
-class Reviews extends React.Component<Props> {
-  props: Props;
-
-  static PropTypes = {};
+class Reviews extends React.Component {
 
   constructor(props) {
     super(props);
