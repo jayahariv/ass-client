@@ -2,10 +2,18 @@ import DocumentTitle from 'react-document-title'
 import React, { Component } from 'react';
 import './App.css';
 import Login from './ui/LoginContainer.js';
-import SideMenuContainer from './ui/SideMenuContainer.js';
 import AssStore from './store/AssStore.js';
 
 const ListView = require('react-list-view');
+const Enum = require('enum');
+
+
+const ASSMode =
+  new Enum([
+    'LogOut',
+    'Reviews',
+    'Mentions',
+  ]);
 
 class App extends Component {
 
@@ -14,12 +22,88 @@ class App extends Component {
     this.state = {
       activity: '',
       mentions: [],
+      mode: ASSMode.LogOut,
     };
 
     this._showActivity = this._showActivity.bind(this);
     this._renderListView = this._renderListView.bind(this);
     this._trim = this._trim.bind(this);
   }
+
+  render() {
+    const mentions = this._showActivity();
+    const content = this._appContent();
+    const menuBar = this._menuBar();
+
+    return (
+      <DocumentTitle title="Ass-Client">
+        <div className="App" title="Home">
+          <div className="line" />
+          <div className="App-header">
+            <div className="App-title">
+              Ass-Client
+            </div>
+          </div>
+            {menuBar}
+          <div className="App-content">
+            {content}
+          </div>
+        </div>
+      </DocumentTitle>
+    );
+  }
+
+  // with respect to the mode, we will show the content
+  _appContent() {
+    if (this.state.mode === ASSMode.LogOut) {
+      return (
+        <Login
+          callback={($e, $r) => {
+            const $o = JSON.parse($r);
+            if ($o && !$o.code) {
+              this.setState({
+                mode: ASSMode.Reviews,
+              });
+            } else {
+              alert('Authentication Failed!!');
+            }
+          }}
+        />
+      );
+    } else if (this.state.mode === ASSMode.Reviews) {
+      return (
+        <div> reviews </div>
+      );
+    } else if (this.state.mode === ASSMode.Mentions) {
+      return (
+        <div> mentions </div>
+      );
+    }
+  }
+
+  // if user is logged in, shows the menu bar items
+  _menuBar() {
+    if (this.state.mode === ASSMode.LogOut) {
+      return (
+        <div className="menu-bar" />
+      );
+    } else {
+      return (
+        <div className="menu-bar">
+          <div className="menu-bar-item">
+            reviews
+          </div>
+          <div className="menu-bar-item">
+            commits
+          </div>
+          <div className="menu-bar-item">
+            mentions
+          </div>
+        </div>
+      );
+    }
+  }
+
 
   _showActivity(): ListView {
     if (this.state.mentions) {
@@ -65,40 +149,6 @@ class App extends Component {
       );
 
     }
-  }
-
-  render() {
-    const mentions = this._showActivity();
-    return (
-      <DocumentTitle title="Ass-Client">
-        <div className="App" title="Home">
-          <div className="App-header">
-            <div className="App-title">
-              Ass-Client
-            </div>
-          </div>
-          <div className="App-content">
-            <div className='App-left'>
-              <SideMenuContainer />
-            </div>
-            <div className="App-gap" />
-            <div className='App-middle'>
-              {mentions}
-            </div>
-            <div className="App-gap" />
-            <div className='App-right'>
-              <Login
-                callback={($error, $resp) => {
-                  this.setState({
-                    mentions: JSON.parse($resp),
-                  });
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </DocumentTitle>
-    );
   }
 }
 
