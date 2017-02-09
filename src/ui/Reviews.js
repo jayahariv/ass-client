@@ -1,11 +1,13 @@
 import AssemblaAPI from '.././service/AssemblaAPI.js';
 import AssStore from '.././store/AssStore.js';
 import React from 'react'
+import './Reviews.css';
+const loader = require('.././images/loader.gif');
 
 const style = {
   table: {
     'display': 'block',
-    'height': '660px',
+    'height': '620px',
     'overflowY': 'scroll',
     'width' : '100%',
   },
@@ -25,33 +27,53 @@ const style = {
 }
 
 class Reviews extends React.Component {
+  _page: Number;
+  _reviews: Array;
+  _count: Number;
 
   constructor(props) {
     super(props);
     this.state = {
       reviews: [],
     };
+    this._page = 1;
+    this._count = 1;
+    this._reviews = [];
     this._activityFetched = this._activityFetched.bind(this);
     this._trim = this._trim.bind(this);
+    this._onNextClick = this._onNextClick.bind(this);
   }
 
   componentDidMount() {
     AssemblaAPI.getActivity(
+      this._page,
       this._activityFetched,
     );
   }
 
   _activityFetched($e, $r) {
     const a = JSON.parse($r);
-    console.log(a);
-    this.setState({
-      reviews: a.filter((obj) => {
-        return (
-          obj.operation === 'commented on' &&
-          obj.author_id === AssStore.getInstance().getAuthorID()
-        );
-      }),
+    const curReviews = a.filter((obj) => {
+      return (
+        obj.operation === 'commented on' &&
+        obj.author_id === AssStore.getInstance().getAuthorID()
+      );
     });
+    this._reviews.push.apply(this._reviews, curReviews);
+    console.log(this._reviews.length);
+    if (
+      this._reviews.length < this._count * 50 &&
+      this._page <= 60/*hard coding for me*/
+    ) {
+      AssemblaAPI.getActivity(
+        (++this._page).toString(),
+        this._activityFetched,
+      );
+    } else {
+      this.setState({
+        reviews: this._reviews,
+      });
+    }
   }
 
   _content() {
@@ -83,15 +105,41 @@ class Reviews extends React.Component {
   }
 
   render() {
-    return this._content();
+    const loading = (
+      <div id="loading" className="loading">
+        <img id="loading-image" src={loader} alt="Loading..." />
+      </div>
+    );
+    if (this.state.reviews.length <= 0) {
+      return loading;
+    }
+    return (
+      <div className="reviewContents">
+        {this._content()}
+        <div>
+          <button
+            type="button"
+            className="button"
+            disable={this._page >= 60}
+            onClick={this._onNextClick}>
+            Load more...
+          </button>
+        </div>
+      </div>
+    );
   }
 
   _trim(s, padding, l) {
     return s.length > l ? s.substring(padding, l - padding) + '...' : s;
   };
 
-  _date(d): string {
-    return
+  _onNextClick() {
+    ++this._page;
+    ++this._count;
+    AssemblaAPI.getActivity(
+      this._page.toString(),
+      this._activityFetched,
+    );
   }
 }
 
