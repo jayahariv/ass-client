@@ -14,4 +14,10 @@ This one is an assemble client project, which you can easily view the mentions.
 - go inside ass-server('cd ass-server') & run 'npm start'.
 - go to http://localhost:3000
 
-![alt tag](https://github.com/jayahariv/ass-client/blob/master/ass-screen.png)
+#### Login
+
+![alt tag](https://github.com/jayahariv/ass-client/blob/master/login.png)
+
+#### Reviews
+
+![alt tag](https://github.com/jayahariv/ass-client/blob/master/reviews.png)
