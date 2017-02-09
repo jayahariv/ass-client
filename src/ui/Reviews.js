@@ -2,6 +2,7 @@ import AssemblaAPI from '.././service/AssemblaAPI.js';
 import AssStore from '.././store/AssStore.js';
 import React from 'react'
 import './Reviews.css';
+const loader = require('.././images/loader.gif');
 
 const style = {
   table: {
@@ -104,6 +105,14 @@ class Reviews extends React.Component {
   }
 
   render() {
+    const loading = (
+      <div id="loading" className="loading">
+        <img id="loading-image" src={loader} alt="Loading..." />
+      </div>
+    );
+    if (this.state.reviews.length <= 0) {
+      return loading;
+    }
     return (
       <div className="reviewContents">
         {this._content()}
@@ -111,6 +120,7 @@ class Reviews extends React.Component {
           <button
             type="button"
             className="button"
+            disable={this._page >= 60}
             onClick={this._onNextClick}>
             Load more...
           </button>
