@@ -7,11 +7,12 @@ class AssemblaAPI {
     this._baseUrl = 'http://localhost:22988';
   }
 
-  getActivity(callback: Function): string {
+  getActivity(page: string, callback: Function): string {
     const key = AssStore.getInstance().getKey();
     const secret = AssStore.getInstance().getSecret();
     request(
-      this._baseUrl + '/activity?key=' + key + '&secret=' + secret + '&page=1',
+      this._baseUrl + '/activity?key=' +
+        key + '&secret=' + secret + '&page=' + page,
       callback,
     );
   }
