@@ -4,6 +4,7 @@ class AssStoreInstance {
   secret: string;
   author_id: string;
   space_id: string;
+  reviews: Array;
 
   getUsers() {
     return this.users;
@@ -23,6 +24,10 @@ class AssStoreInstance {
 
   getAuthorID() {
     return this.author_id;
+  }
+
+  getReviews() {
+    return this.reviews;
   }
 }
 
