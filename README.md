@@ -4,11 +4,11 @@
 
 This one is an assemble client project, which you can view the comments added by you. It will show 50 comments at a time and then on load more, see next.
 
-# THIS WON"T WORK in GH-PAGES
+## THIS WON"T WORK in GH-PAGES
 
-#### Setup
+## Setup
 
-#### How to make it work in local
+### How to make it work in local
 
 - Download/clone the ass-client.
 - go inside folder ass-client('cd ass-client') & run 'npm start'.
@@ -17,21 +17,21 @@ This one is an assemble client project, which you can view the comments added by
 - go to http://localhost:3000
 
 
-#### How to setup passwords
+### How to setup passwords
 
 - create a file, example, 'passwords.txt',  in any location.
 - Add the key, secret, space_id & user_id in it with a space separating them. For example, "key secret spaceId userId".
 - Go to 'src/Constants.js' file & mention the file path in it.
 
-#### Others
+### Others
 - Now we are only fetching till 60 pages, you can change the page count in 'Reviews.js' class.
 
-##### Screenshots
+## Screenshots
 
-##### Login
+### Login
 
 ![alt tag](https://github.com/jayahariv/ass-client/blob/master/login.png)
 
-##### Reviews
+### Reviews
 
 ![alt tag](https://github.com/jayahariv/ass-client/blob/master/reviews.png)
