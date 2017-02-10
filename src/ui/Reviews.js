@@ -22,7 +22,7 @@ const style = {
     'width': '60%',
   },
   row: {
-    'text-align': 'left',
+    'textAlign': 'left',
   }
 }
 
@@ -34,7 +34,9 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
+      reviews: AssStore.getInstance().reviews
+        ? AssStore.getInstance().reviews
+        : [],
     };
     this._page = 1;
     this._count = 1;
@@ -45,10 +47,12 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    AssemblaAPI.getActivity(
-      this._page,
-      this._activityFetched,
-    );
+    if (this.state.reviews.length <= 0) {
+      AssemblaAPI.getActivity(
+        this._page,
+        this._activityFetched,
+      );
+    }
   }
 
   _activityFetched($e, $r) {
@@ -60,7 +64,6 @@ class Reviews extends React.Component {
       );
     });
     this._reviews.push.apply(this._reviews, curReviews);
-    console.log(this._reviews.length);
     if (
       this._reviews.length < this._count * 50 &&
       this._page <= 60/*hard coding for me*/
@@ -70,6 +73,7 @@ class Reviews extends React.Component {
         this._activityFetched,
       );
     } else {
+      AssStore.getInstance().reviews = this._reviews;
       this.setState({
         reviews: this._reviews,
       });
@@ -120,7 +124,7 @@ class Reviews extends React.Component {
           <button
             type="button"
             className="button"
-            disable={this._page >= 60}
+            disabled={this._page >= 60}
             onClick={this._onNextClick}>
             Load more...
           </button>

@@ -2,7 +2,8 @@
 
 ## Description
 
-This one is an assemble client project, which you can easily view the mentions.
+This one is an assemble client project, which you can view the comments added by you. It will show 50 comments at a time and then on load more, see next.
+
 
 ### THIS WON"T WORK in GH-PAGES
 
