@@ -1,10 +1,10 @@
-# Welcome to Assembla-Client
+# Assembla-Client
 
 ## Description
 
-This one is an assemble client project, which you can view the comments added by you. It will show 50 comments at a time and then on load more, see next.
+This project is an assemble client web app, where you can view the comments added by you alone. It will show 50 comments at a time and then on load more, see next.
 
-## THIS WON"T WORK in GH-PAGES
+### THIS WON"T WORK in GH-PAGES
 
 ## Setup
 
